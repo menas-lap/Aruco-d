@@ -1,0 +1,34 @@
+<!-- Run the aruco_detect node -->
+<launch>
+  <!-- namespace for camera input -->
+  <arg name="camera" default="/camera"/>
+  <arg name="image" default="image_raw"/>
+  <arg name="transport" default="compressed"/>
+  <arg name="fiducial_len" default="0.14"/>
+  <arg name="dictionary" default="7"/>
+  <arg name="do_pose_estimation" default="true"/>
+  <!-- If vis_msgs set to true, pose estimation will be published with ROS standard vision_msgs -->
+  <arg name="vis_msgs" default="false"/>
+  <arg name="ignore_fiducials" default="" />
+  <arg name="fiducial_len_override" default="" />
+  <arg name="verbose" default="false"/>
+
+  <node pkg="aruco_detect" name="aruco_detect"
+    type="aruco_detect" output="screen" respawn="false">
+    <param name="camera" value="/camera" />
+    <param name="image" value="image_raw" />
+    <param name="transport" value="compressed" />
+    <param name="fiducial_len" value="0.14" />
+    <param name="dictionary" value="7" />
+    <param name="do_pose_estimation" value="true" />
+    <param name="vis_msgs" value="false" />
+    <param name="ignore_fiducials" value="" />
+    <param name="fiducial_len_override" value="" />
+    <param name="verbose" value="false" />
+
+    <!-- Remap for rviz simulation -->
+    <remap from="camera/compressed" 
+        to="$(arg camera)/$(arg image)/$(arg transport)"/>
+    <remap from="camera_info" to="$(arg camera)/camera_info"/>
+  </node>
+</launch>
