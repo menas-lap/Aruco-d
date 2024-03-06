@@ -1,0 +1,8 @@
+<!-- fiducial_converter_launch.launch -->
+<launch>
+  <!-- Include your existing launch file -->
+  <include file="/home/programmer/ERC-Remote-Navigation-Sim/src/fiducials/aruco_detect/launch/aruco_detect.launch"/>
+
+  <!-- Add fiducial_transforms_converter node -->
+  <node pkg="aruco_detect" type="fiducial_transform_converter.py" name="fiducial_transform_converter" output="screen"/>
+</launch>
